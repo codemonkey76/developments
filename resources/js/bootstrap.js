@@ -8,11 +8,22 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+    window.Popper = require('popper.js');
+    window.$ = window.jQuery = require('jquery/dist/jquery.slim');
+    // require('bootstrap/js/dist/alert.js');
+    // require('bootstrap/js/dist/button.js');
+    // require('bootstrap/js/dist/carousel.js');
+    // require('bootstrap/js/dist/collapse.js');
+    // require('bootstrap/js/dist/dropdown.js');
+    // require('bootstrap/js/dist/modal.js');
+    // require('bootstrap/js/dist/popover.js');
+    // require('bootstrap/js/dist/scrollspy.js');
+    // require('bootstrap/js/dist/tab.js');
+    // require('bootstrap/js/dist/tooltip.js');
+    // require('bootstrap/js/dist/util.js');
+} catch (e) {
 
-    require('bootstrap');
-} catch (e) {}
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
