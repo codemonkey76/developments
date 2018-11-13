@@ -15,6 +15,7 @@ class CreateSaleContractsTable extends Migration
     {
         Schema::create('sale_contracts', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('lot_id');
             $table->string('email', 50)->nullable();
             $table->dateTime('contract_date')->nullable();
             $table->string('buyer_name', 100)->nullable();

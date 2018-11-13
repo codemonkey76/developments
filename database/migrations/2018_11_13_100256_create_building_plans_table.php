@@ -15,6 +15,7 @@ class CreateBuildingPlansTable extends Migration
     {
         Schema::create('building_plans', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('lot_id');
             $table->boolean('plans_submitted')->default(false);
             $table->boolean('plans_approved')->default(false);
             $table->boolean('builder_name')->default(false);

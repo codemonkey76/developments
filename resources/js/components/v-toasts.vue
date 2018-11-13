@@ -1,5 +1,20 @@
+<template>
+    <div id="v-toasts">
+        <transition-group name="v-toasts" tag="div">
+            <div
+                    v-for="toast in content" :key="toast.id" :class="type(toast.type)"
+                    class="v-toasts-item alert border bg-white border-light shadow" role="alert">
+                <div class="v-toasts-header">
+                    <i class="fa" :class="icon(toast.type)"></i> {{ toast.title}}
+                </div>
+                <div class="v-toasts-content">{{ toast.body}}</div>
+            </div>
+        </transition-group>
+    </div>
+</template>
 <script>
     export default {
+        props: ['message'],
         data() {
             return {
                 defaults: {
@@ -46,23 +61,13 @@
         },
         created() {
             window.events.$on('toast', this.add);
+
+            if (this.message) {
+                this.add(this.message);
+            }
         }
     }
 </script>
-<template>
-    <div id="v-toasts">
-        <transition-group name="v-toasts" tag="div">
-            <div
-                    v-for="toast in content" :key="toast.id" :class="type(toast.type)"
-                    class="v-toasts-item alert border bg-white border-light shadow" role="alert">
-                <div class="v-toasts-header">
-                    <i class="fa" :class="icon(toast.type)"></i> {{ toast.title}}
-                </div>
-                <div class="v-toasts-content">{{ toast.body}}</div>
-            </div>
-        </transition-group>
-    </div>
-</template>
 <style lang="scss">
     $width: 240px;
     $transition: all 300ms ease-in-out;

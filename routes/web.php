@@ -12,9 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('lots.create');
+//    return view('welcome');
 });
 
+Route::get('/test', function() {
+    $toast = [
+        'title'=> 'Testing',
+        'body' => 'This is a test message to test the toast messages',
+        'type' => 'success',
+        'timeout' => 3000
+    ];
+   return redirect('/')->with('toast', json_encode($toast));
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

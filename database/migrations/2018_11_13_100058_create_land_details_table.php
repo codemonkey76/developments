@@ -15,8 +15,9 @@ class CreateLandDetailsTable extends Migration
     {
         Schema::create('land_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('lot_id');
             $table->dateTime('registered_plan')->nullable();
-            $table->unsignedInteger('lot_number')->nullable();
+            $table->unsignedInteger('lot_area')->nullable();
             $table->unsignedInteger('street_number')->nullable();
             $table->string('street', 50)->nullable();
             $table->string('suburb', 50)->nullable();
