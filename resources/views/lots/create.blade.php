@@ -6,6 +6,7 @@
             <div class="col">
                 <contract-info-form></contract-info-form>
             </div>
+            {{ $errors }}
         </div>
     </div>
 @endsection

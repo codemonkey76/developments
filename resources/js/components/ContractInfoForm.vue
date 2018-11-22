@@ -74,9 +74,7 @@
             icon: 'fa-edit',
         }]">
                 <template slot="land-details">
-                    <div class="card-body">
-                        <land-details :lot="form.lot_id"></land-details>
-                    </div>
+                    <land-details :lot="form.lot_id"></land-details>
                 </template>
                 <template slot="sale-contracts">
 

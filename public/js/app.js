@@ -41776,8 +41776,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42063,14 +42061,12 @@ var render = function() {
                 }
               },
               [
-                _c("template", { slot: "land-details" }, [
-                  _c(
-                    "div",
-                    { staticClass: "card-body" },
-                    [_c("land-details", { attrs: { lot: _vm.form.lot_id } })],
-                    1
-                  )
-                ]),
+                _c(
+                  "template",
+                  { slot: "land-details" },
+                  [_c("land-details", { attrs: { lot: _vm.form.lot_id } })],
+                  1
+                ),
                 _vm._v(" "),
                 _c("template", { slot: "sale-contracts" }),
                 _vm._v(" "),
@@ -42397,6 +42393,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['lot'],
@@ -42407,7 +42420,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            form: []
+            form: [],
+            errors: []
         };
     },
     mounted: function mounted() {
@@ -42422,6 +42436,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = _ref.data;
 
                 _this.form = data;
+            });
+        },
+        updateLandDetails: function updateLandDetails() {
+            var _this2 = this;
+
+            axios.patch('/api/lots/' + this.lot + '/land-detail', this.form).then(function (_ref2) {
+                var data = _ref2.data;
+
+                _this2.$set('errors', data.errors);
+            }).catch(function (_ref3) {
+                var data = _ref3.data;
+
+                _this2.$set('errors', data.errors);
+                console.log(data);
+            });
+        },
+        deleteLandDetails: function deleteLandDetails() {
+            axios.delete('/api/lots/' + this.lot + '/land-detail').then(function (_ref4) {
+                var data = _ref4.data;
+
+                console.log(data);
+            }).catch(function (_ref5) {
+                var data = _ref5.data;
+
+                console.log(data);
             });
         }
     }
@@ -42442,7 +42481,133 @@ var render = function() {
         ? _c("button", { staticClass: "btn btn-primary" }, [
             _vm._v("Add Land Details")
           ])
-        : [_vm._m(0), _vm._v(" "), _vm._m(1)]
+        : [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-6 col-form-label text-right",
+                        attrs: { for: "lot_area" }
+                      },
+                      [_vm._v("Lot Area")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.lot_area,
+                            expression: "form.lot_area"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "lot_area",
+                          id: "lot_area"
+                        },
+                        domProps: { value: _vm.form.lot_area },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "lot_area", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-6 col-form-label text-right",
+                        attrs: { for: "street_number" }
+                      },
+                      [_vm._v("Street Number")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.street_number,
+                            expression: "form.street_number"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "street_number",
+                          id: "street_number"
+                        },
+                        domProps: { value: _vm.form.street_number },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "street_number",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]),
+              _vm._v(" "),
+              _vm._m(4)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      _vm.updateLandDetails()
+                    }
+                  }
+                },
+                [_vm._v("Save Land Details")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: {
+                    click: function($event) {
+                      _vm.deleteLandDetails()
+                    }
+                  }
+                },
+                [_vm._v("Delete")]
+              )
+            ])
+          ]
     ],
     2
   )
@@ -42452,190 +42617,158 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-6 col-form-label text-right",
+          attrs: { for: "street" }
+        },
+        [_vm._v("Street")]
+      ),
+      _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "lot_area" }
-            },
-            [_vm._v("Lot Area")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", name: "lot_area", id: "lot_area" }
-            })
-          ])
-        ]),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", name: "street", id: "street" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-6 col-form-label text-right",
+          attrs: { for: "suburb" }
+        },
+        [_vm._v("Suburb")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", name: "suburb", id: "suburb" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-6 col-form-label text-right",
+          attrs: { for: "postcode" }
+        },
+        [_vm._v("Postcode")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", name: "postcode", id: "postcode" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-6" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-6 col-form-label text-right",
+            attrs: { for: "registered_plan" }
+          },
+          [_vm._v("Registered Plan\n                            Date")]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "street_number" }
-            },
-            [_vm._v("Street Number")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "street_number",
-                id: "street_number"
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "street" }
-            },
-            [_vm._v("Street")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", name: "street", id: "street" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "suburb" }
-            },
-            [_vm._v("Suburb")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", name: "suburb", id: "suburb" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "postcode" }
-            },
-            [_vm._v("Postcode")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", name: "postcode", id: "postcode" }
-            })
-          ])
+        _c("div", { staticClass: "col-6" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "registered_plan",
+              id: "registered_plan"
+            }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "registered_plan" }
-            },
-            [_vm._v("Registered Plan Date")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "registered_plan",
-                id: "registered_plan"
-              }
-            })
-          ])
-        ]),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-6 col-form-label text-right",
+            attrs: { for: "subdivided_rpsp" }
+          },
+          [_vm._v("RP / SP")]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "subdivided_rpsp" }
-            },
-            [_vm._v("RP / SP")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "subdivided_rpsp",
-                id: "subdivided_rpsp"
-              }
-            })
-          ])
-        ]),
+        _c("div", { staticClass: "col-6" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "subdivided_rpsp",
+              id: "subdivided_rpsp"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-6 col-form-label text-right",
+            attrs: { for: "subdivided_county" }
+          },
+          [_vm._v("County")]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "subdivided_county" }
-            },
-            [_vm._v("County")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "subdivided_county",
-                id: "subdivided_county"
-              }
-            })
-          ])
-        ]),
+        _c("div", { staticClass: "col-6" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "subdivided_county",
+              id: "subdivided_county"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-6 col-form-label text-right",
+            attrs: { for: "subdivided_parish" }
+          },
+          [_vm._v("Parish")]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-6 col-form-label text-right",
-              attrs: { for: "subdivided_parish" }
-            },
-            [_vm._v("Parish")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "subdivided_parish",
-                id: "subdivided_parish"
-              }
-            })
-          ])
+        _c("div", { staticClass: "col-6" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "subdivided_parish",
+              id: "subdivided_parish"
+            }
+          })
         ])
       ])
     ])
@@ -42653,7 +42786,7 @@ var staticRenderFns = [
               staticClass: "col-6 col-form-label text-right",
               attrs: { for: "original_lot_number" }
             },
-            [_vm._v("Original Lot Number")]
+            [_vm._v("Original Lot\n                            Number")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
@@ -42697,7 +42830,7 @@ var staticRenderFns = [
               staticClass: "col-6 col-form-label text-right",
               attrs: { for: "original_country" }
             },
-            [_vm._v("Original Country")]
+            [_vm._v("Original\n                            Country")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
@@ -42743,7 +42876,7 @@ var staticRenderFns = [
               staticClass: "col-6 col-form-label text-right",
               attrs: { for: "reconfigured_lot_number" }
             },
-            [_vm._v("Reconfigured Lot Number")]
+            [_vm._v("Reconfigured\n                            Lot Number")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
@@ -42765,7 +42898,7 @@ var staticRenderFns = [
               staticClass: "col-6 col-form-label text-right",
               attrs: { for: "reconfigured_rpsp" }
             },
-            [_vm._v("Reconfigured RP / SP")]
+            [_vm._v("Reconfigured RP /\n                            SP")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
@@ -42787,7 +42920,7 @@ var staticRenderFns = [
               staticClass: "col-6 col-form-label text-right",
               attrs: { for: "reconfigured_county" }
             },
-            [_vm._v("Reconfigured County")]
+            [_vm._v("Reconfigured\n                            County")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
@@ -42809,7 +42942,7 @@ var staticRenderFns = [
               staticClass: "col-6 col-form-label text-right",
               attrs: { for: "reconfigured_parish" }
             },
-            [_vm._v("Reconfigured Parish")]
+            [_vm._v("Reconfigured\n                            Parish")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
@@ -44895,7 +45028,7 @@ var content = __webpack_require__(70);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("269df662", content, false, {});
+var update = __webpack_require__(4)("aba00ea2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -45477,7 +45610,7 @@ var content = __webpack_require__(79);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("73675468", content, false, {});
+var update = __webpack_require__(4)("120d5296", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -45949,7 +46082,7 @@ var content = __webpack_require__(84);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("b0ddcf06", content, false, {});
+var update = __webpack_require__(4)("69bf1890", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -46388,7 +46521,7 @@ var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("708aab08", content, false, {});
+var update = __webpack_require__(4)("5f38f25b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
