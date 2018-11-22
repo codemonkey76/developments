@@ -50,7 +50,7 @@
 </div>
 
 <v-tabs
-    :tabs="[{
+        :tabs="[{
         name: 'Land Details',
         hash: 'land-details',
         icon: 'fa-home',
@@ -72,8 +72,17 @@
     }]">
 
     <template slot="land-details">
-        @include('lots.fields.lot_area')
-        @include('lots.fields.street_number')
+        <div class="row">
+            <div class="col-6">
+                {{--@include('lots.fields.lot_area')--}}
+                {{--@include('lots.fields.street_number')--}}
+                {{--@include('lots.fields.street')--}}
+                {{--@include('lots.fields.suburb')--}}
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
     </template>
     <template slot="sale-contracts">
 

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lot extends Model
 {
+    protected $guarded = [];
+
     public function stage()
     {
         return $this->belongsTo(Stage::class);
