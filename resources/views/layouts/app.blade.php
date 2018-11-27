@@ -75,7 +75,8 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <v-toasts :message="{{json_encode(session('toast'))}}"></v-toasts>
+
+        <v-toasts :message="{{ session('toast') ?? '{}' }}"></v-toasts>
 
     </div>
 </body>

@@ -14,6 +14,7 @@
 use App\Development;
 use App\Lot;
 use App\Stage;
+use App\Toast;
 use Illuminate\Support\Facades\Response;
 
 Route::get('/', function () {
@@ -24,14 +25,9 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    $toast = [
-        'title'   => 'Testing',
-        'body'    => 'This is a test message to test the toast messages',
-        'type'    => 'success',
-        'timeout' => 3000
-    ];
+    $toast = new Toast('Testing','This is a test message to test the toast messages','success',3000);
 
-    return redirect('/')->with('toast', $toast);
+    return redirect('/')->with('toast', $toast->toJson());
 });
 Auth::routes();
 
@@ -55,7 +51,7 @@ Route::get('/api/lots/{lot}/land-detail', function (Lot $lot) {
 
 Route::patch('/api/lots/{lot}/land-detail', function (Lot $lot) {
     $validated = request()->validate([
-        'lot_area'                => 'numeric|nullable',
+        'lot_area'                => 'required|numeric',
         'street_number'           => 'numeric|nullable',
         'street'                  => 'string|max:50|nullable',
         'suburb'                  => 'string|max:50|nullable',

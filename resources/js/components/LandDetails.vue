@@ -2,145 +2,45 @@
     <div>
         <button v-if="!form" class="btn btn-primary">Add Land Details</button>
         <template v-else>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group row">
-                            <label for="lot_area" class="col-6 col-form-label text-right">Lot Area</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="lot_area" id="lot_area" v-model="form.lot_area">
-                            </div>
+            <form @submit.prevent="onSubmit">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <v-textfield :form="form" name="lot_area"></v-textfield>
+                            <v-textfield :form="form" name="street_number"></v-textfield>
+                            <v-textfield :form="form" name="street"></v-textfield>
+                            <v-textfield :form="form" name="suburb"></v-textfield>
+                            <v-textfield :form="form" name="postcode"></v-textfield>
                         </div>
-                        <div class="form-group row">
-                            <label for="street_number" class="col-6 col-form-label text-right">Street Number</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="street_number" id="street_number" v-model="form.street_number">
-                            </div>
+                        <div class="col-6">
+                            <v-textfield :form="form" name="registered_plan" label="Registered Plan Date"></v-textfield>
+                            <v-textfield :form="form" name="subdivided_rpsp" label="RP / SP"></v-textfield>
+                            <v-textfield :form="form" name="subdivided_county" label="County"></v-textfield>
+                            <v-textfield :form="form" name="subdivided_parish" label="Parish"></v-textfield>
                         </div>
-                        <div class="form-group row">
-                            <label for="street" class="col-6 col-form-label text-right">Street</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="street" id="street">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="suburb" class="col-6 col-form-label text-right">Suburb</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="suburb" id="suburb">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="postcode" class="col-6 col-form-label text-right">Postcode</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="postcode" id="postcode">
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="col-6">
-                        <div class="form-group row">
-                            <label for="registered_plan" class="col-6 col-form-label text-right">Registered Plan
-                                Date</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="registered_plan" id="registered_plan">
-                            </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <v-textfield class="pt-4" :form="form" name="original_lot_number"></v-textfield>
+                            <v-textfield :form="form" name="original_rpsp" label="Original RP / SP"></v-textfield>
+                            <v-textfield :form="form" name="original_county"></v-textfield>
+                            <v-textfield :form="form" name="original_parish"></v-textfield>
                         </div>
-                        <div class="form-group row">
-                            <label for="subdivided_rpsp" class="col-6 col-form-label text-right">RP / SP</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="subdivided_rpsp" id="subdivided_rpsp">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="subdivided_county" class="col-6 col-form-label text-right">County</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="subdivided_county" id="subdivided_county">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="subdivided_parish" class="col-6 col-form-label text-right">Parish</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="subdivided_parish" id="subdivided_parish">
-                            </div>
-                        </div>
-
-
+                        <div class="col-6">
+                            <v-textfield class="pt-4" :form="form" name="reconfigured_lot_number"></v-textfield>
+                            <v-textfield name="reconfigured_rpsp" :form="form" label="Reconfigured RP / SP"></v-textfield>
+                            <v-textfield :form="form" name="reconfigured_county"></v-textfield>
+                            <v-textfield :form="form" name="reconfigured_parish"></v-textfield>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group row pt-4">
-                            <label for="original_lot_number" class="col-6 col-form-label text-right">Original Lot
-                                Number</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="original_lot_number"
-                                       id="original_lot_number">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="original_rpsp" class="col-6 col-form-label text-right">Original RP / SP</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="original_rpsp" id="original_rpsp">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="original_country" class="col-6 col-form-label text-right">Original
-                                Country</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="original_country" id="original_country">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="original_parish" class="col-6 col-form-label text-right">Original Parish</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="original_parish" id="original_parish">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group row pt-4">
-                            <label for="reconfigured_lot_number" class="col-6 col-form-label text-right">Reconfigured
-                                Lot Number</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="reconfigured_lot_number"
-                                       id="reconfigured_lot_number">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="reconfigured_rpsp" class="col-6 col-form-label text-right">Reconfigured RP /
-                                SP</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="reconfigured_rpsp" id="reconfigured_rpsp">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="reconfigured_county" class="col-6 col-form-label text-right">Reconfigured
-                                County</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="reconfigured_county"
-                                       id="reconfigured_county">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="reconfigured_parish" class="col-6 col-form-label text-right">Reconfigured
-                                Parish</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="reconfigured_parish"
-                                       id="reconfigured_parish">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-primary" @click="updateLandDetails()">Save Land Details</button>
-                <button class="btn btn-danger" @click="deleteLandDetails()">Delete</button>
-            </div>
-        </template>
     </div>
+    <div class="card-footer">
+        <button class="btn btn-primary">Save Land Details</button>
+        <!--<button class="btn btn-danger" @click="deleteLandDetails()">Delete</button>-->
+    </div>
+    </form>
+</template>
+</div>
 </template>
 <script>
     export default {
@@ -152,32 +52,37 @@
         },
         data() {
             return {
-                form: [],
-                errors: []
+                form: new Form({
+                    lot_area: '',
+                    street_number: '',
+                    street: '',
+                    suburb: '',
+                    postcode: '',
+                    registered_plan: '',
+                    subdivided_rpsp: '',
+                    subdivided_county: '',
+                    subdivided_parish: '',
+                    original_lot_number: '',
+                    original_rpsp: '',
+                    original_county: '',
+                    original_parish: '',
+                    reconfigured_lot_number: '',
+                    reconfigured_rpsp: '',
+                    reconfigured_county: '',
+                    reconfigured_parish: ''
+                })
             }
         },
         mounted() {
             this.fetch();
         },
         methods: {
+            onSubmit() {
+                this.form.submit('patch', '/api/lots/' + this.lot + '/land-detail');
+            },
             fetch() {
                 axios.get('/api/lots/' + this.lot + '/land-detail').then(({data}) => {
-                    this.form = data;
-                });
-            },
-            updateLandDetails() {
-                axios.patch('/api/lots/' + this.lot + '/land-detail', this.form).then(({data}) => {
-                    this.$set('errors', data.errors);
-                }).catch(({data}) => {
-                    this.$set('errors', data.errors);
-                   console.log(data);
-                });
-            },
-            deleteLandDetails() {
-                axios.delete('/api/lots/' + this.lot + '/land-detail').then(({data}) => {
-                    console.log(data);
-                }).catch(({data}) => {
-                    console.log(data);
+                    this.form.addData(data);
                 });
             }
         }
